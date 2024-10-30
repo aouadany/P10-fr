@@ -13,7 +13,7 @@
             left: 0;
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly; /* Adjusted for visibility */
             background-color: #333;
             padding: 8px 0;
             z-index: 1000;
@@ -21,7 +21,7 @@
 
         nav button {
             color: white;
-            background: transparent;
+            background-color: #4CAF50; /* Temporary background to ensure visibility */
             border: none;
             padding: 8px;
             font-size: 1em;
@@ -52,93 +52,4 @@
             display: none;
             align-items: center;
             justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            font-size: 18px;
-            text-align: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        /* Main content styling */
-        .content {
-            display: block;
-            text-align: center;
-            padding: 0 10px;
-            margin-top: 80px; /* Adjusted for nav bar height */
-        }
-
-        /* Mobile-specific styling */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5em;
-            }
-            nav button {
-                font-size: 0.9em;
-                padding: 6px;
-            }
-            .rotate-message {
-                font-size: 16px;
-                padding: 15px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Rotate message overlay -->
-    <div class="rotate-message">
-        Please rotate your device to landscape mode for the best experience.
-    </div>
-
-    <nav>
-        <button onclick="location.href='../index.html'">Home</button>
-        <button onclick="location.href='P10-Chapter-1-fr.html'">Course</button>
-        <button onclick="location.href='P10-Ch1-Lab-fr.html'">Lab</button>
-        <button onclick="enterFullScreen()">Full Screen</button> <!-- Full-screen button -->
-    </nav>
-
-    <!-- Main content of the page -->
-    <div class="content">
-        <h1>Chapter 1 - Quiz</h1>
-        <div class="swf-container" id="swf-container">
-            <object data="qcm-1-fr.swf"></object>
-        </div>
-    </div>
-
-    <!-- JavaScript to detect orientation and show/hide the rotate message -->
-    <script>
-        function checkOrientation() {
-            if (window.innerHeight > window.innerWidth) {
-                // Show rotate message if in portrait mode
-                document.querySelector('.rotate-message').style.display = 'flex';
-                document.querySelector('.content').style.display = 'none';
-            } else {
-                // Hide rotate message if in landscape mode
-                document.querySelector('.rotate-message').style.display = 'none';
-                document.querySelector('.content').style.display = 'block';
-            }
-        }
-
-        // Function to enter full screen for the SWF container
-        function enterFullScreen() {
-            const swfContainer = document.getElementById('swf-container');
-            if (swfContainer.requestFullscreen) {
-                swfContainer.requestFullscreen();
-            } else if (swfContainer.webkitRequestFullscreen) { // Safari
-                swfContainer.webkitRequestFullscreen();
-            } else if (swfContainer.msRequestFullscreen) { // IE11
-                swfContainer.msRequestFullscreen();
-            }
-        }
-
-        // Run checkOrientation on load and resize
-        window.addEventListener('load', checkOrientation);
-        window.addEventListener('resize', checkOrientation);
-    </script>
-</body>
-</html>
+            position: fixed
