@@ -5,9 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 1 - Quiz</title>
 	<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+ <style>
+        /* Fixed navigation bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px 0;
+            z-index: 1000;
+        }
 
-	    <style>
-        /* CSS for the rotate message overlay */
+        nav button {
+            color: white;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+           /* Responsive container for SWF object */
+        .swf-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 60px auto 0; /* Margin top adjusted for nav bar height */
+            padding-bottom: 75%; /* Aspect ratio for 4:3 */
+            height: 0;
+        }
+
+        .swf-container object {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Rotate message overlay */
         .rotate-message {
             display: none;
             align-items: center;
@@ -24,11 +63,14 @@
             z-index: 1000;
         }
 
-        /* Hide the main content in portrait mode */
+        /* Main content styling */
         .content {
             display: block;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
+ 
 </head>
 <body>
 	<!-- Rotate message overlay -->
@@ -45,10 +87,15 @@
 	<button onclick="location.href='P10-Ch1-Lab-fr.html'">Lab</button>
            </nav>
 
-    <div>
-        <object data="qcm-1-fr.swf" width="800" height="600"></object>
+    <div class="swf-container">
+            <object data="../swf/chapter1_quiz.swf" type="application/x-shockwave-flash">
+                <!-- Fallback message for browsers without Flash -->
+                <p>Your browser does not support Flash content.</p>
+            </object>
+        </div>
     </div>
-	 <!-- JavaScript to detect orientation and show/hide the rotate message -->
+
+    <!-- JavaScript to detect orientation and show/hide the rotate message -->
     <script>
         function checkOrientation() {
             if (window.innerHeight > window.innerWidth) {
