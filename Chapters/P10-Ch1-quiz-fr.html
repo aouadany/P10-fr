@@ -17,7 +17,6 @@
             background-color: #333;
             padding: 8px 0;
             z-index: 1000;
-            transition: opacity 0.3s;
         }
 
         nav button {
@@ -29,23 +28,15 @@
             cursor: pointer;
         }
 
-        /* SWF container */
+        /* Responsive container for SWF object */
         .swf-container {
             position: relative;
             width: 100%;
-            max-width: 100%;
-            margin: 60px auto 0;
-            padding-bottom: 75%;
+            max-width: 100%; /* Fit within mobile screen width */
+            margin: 60px auto 0; /* Adjusted for nav bar height */
+            padding-bottom: 75%; /* Aspect ratio for 4:3 content */
             height: 0;
             overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .swf-container.fullscreen {
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
         }
 
         .swf-container object {
@@ -79,8 +70,7 @@
             display: block;
             text-align: center;
             padding: 0 10px;
-            margin-top: 80px;
-            transition: opacity 0.3s;
+            margin-top: 80px; /* Adjusted for nav bar height */
         }
 
         /* Mobile-specific styling */
@@ -109,6 +99,7 @@
         <button onclick="location.href='../index.html'">Home</button>
         <button onclick="location.href='P10-Chapter-1-fr.html'">Course</button>
         <button onclick="location.href='P10-Ch1-Lab-fr.html'">Lab</button>
+        <button onclick="enterFullScreen()">Full Screen</button> <!-- Full-screen button -->
     </nav>
 
     <!-- Main content of the page -->
@@ -121,24 +112,27 @@
 
     <!-- JavaScript to detect orientation and show/hide the rotate message -->
     <script>
-        const swfContainer = document.getElementById('swf-container');
-        const nav = document.querySelector('nav');
-        const content = document.querySelector('.content');
-        const rotateMessage = document.querySelector('.rotate-message');
-
         function checkOrientation() {
             if (window.innerHeight > window.innerWidth) {
                 // Show rotate message if in portrait mode
-                rotateMessage.style.display = 'flex';
-                content.style.display = 'none';
-                nav.style.opacity = 1;
-                swfContainer.classList.remove('fullscreen');
+                document.querySelector('.rotate-message').style.display = 'flex';
+                document.querySelector('.content').style.display = 'none';
             } else {
-                // Hide rotate message if in landscape mode and enable fullscreen SWF
-                rotateMessage.style.display = 'none';
-                content.style.display = 'block';
-                nav.style.opacity = 0; // Hide nav in landscape fullscreen
-                swfContainer.classList.add('fullscreen');
+                // Hide rotate message if in landscape mode
+                document.querySelector('.rotate-message').style.display = 'none';
+                document.querySelector('.content').style.display = 'block';
+            }
+        }
+
+        // Function to enter full screen for the SWF container
+        function enterFullScreen() {
+            const swfContainer = document.getElementById('swf-container');
+            if (swfContainer.requestFullscreen) {
+                swfContainer.requestFullscreen();
+            } else if (swfContainer.webkitRequestFullscreen) { // Safari
+                swfContainer.webkitRequestFullscreen();
+            } else if (swfContainer.msRequestFullscreen) { // IE11
+                swfContainer.msRequestFullscreen();
             }
         }
 
