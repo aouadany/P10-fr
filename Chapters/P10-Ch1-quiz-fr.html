@@ -17,6 +17,7 @@
             background-color: #333;
             padding: 8px 0;
             z-index: 1000;
+            transition: opacity 0.3s;
         }
 
         nav button {
@@ -28,15 +29,23 @@
             cursor: pointer;
         }
 
-        /* Responsive container for SWF object */
+        /* SWF container */
         .swf-container {
             position: relative;
             width: 100%;
-            max-width: 100%; /* Fit within mobile screen width */
-            margin: 60px auto 0; /* Adjusted for nav bar height */
-            padding-bottom: 75%; /* Aspect ratio for 4:3 content */
+            max-width: 100%;
+            margin: 60px auto 0;
+            padding-bottom: 75%;
             height: 0;
             overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .swf-container.fullscreen {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
         }
 
         .swf-container object {
@@ -57,4 +66,85 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        /* Main content styling */
+        .content {
+            display: block;
+            text-align: center;
+            padding: 0 10px;
+            margin-top: 80px;
+            transition: opacity 0.3s;
+        }
+
+        /* Mobile-specific styling */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            nav button {
+                font-size: 0.9em;
+                padding: 6px;
+            }
+            .rotate-message {
+                font-size: 16px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Rotate message overlay -->
+    <div class="rotate-message">
+        Please rotate your device to landscape mode for the best experience.
+    </div>
+
+    <nav>
+        <button onclick="location.href='../index.html'">Home</button>
+        <button onclick="location.href='P10-Chapter-1-fr.html'">Course</button>
+        <button onclick="location.href='P10-Ch1-Lab-fr.html'">Lab</button>
+    </nav>
+
+    <!-- Main content of the page -->
+    <div class="content">
+        <h1>Chapter 1 - Quiz</h1>
+        <div class="swf-container" id="swf-container">
+            <object data="qcm-1-fr.swf"></object>
+        </div>
+    </div>
+
+    <!-- JavaScript to detect orientation and show/hide the rotate message -->
+    <script>
+        const swfContainer = document.getElementById('swf-container');
+        const nav = document.querySelector('nav');
+        const content = document.querySelector('.content');
+        const rotateMessage = document.querySelector('.rotate-message');
+
+        function checkOrientation() {
+            if (window.innerHeight > window.innerWidth) {
+                // Show rotate message if in portrait mode
+                rotateMessage.style.display = 'flex';
+                content.style.display = 'none';
+                nav.style.opacity = 1;
+                swfContainer.classList.remove('fullscreen');
+            } else {
+                // Hide rotate message if in landscape mode and enable fullscreen SWF
+                rotateMessage.style.display = 'none';
+                content.style.display = 'block';
+                nav.style.opacity = 0; // Hide nav in landscape fullscreen
+                swfContainer.classList.add('fullscreen');
+            }
+        }
+
+        // Run checkOrientation on load and resize
+        window.addEventListener('load', checkOrientation);
+        window.addEventListener('resize', checkOrientation);
+    </script>
+</body>
+</html>
