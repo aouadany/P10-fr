@@ -5,8 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 1 - Quiz</title>
 	<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
+	    <style>
+        /* CSS for the rotate message overlay */
+        .rotate-message {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-size: 24px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        /* Hide the main content in portrait mode */
+        .content {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+	<!-- Rotate message overlay -->
+    <div class="rotate-message">
+        Please rotate your device to landscape mode for the best experience.
+    </div>
+
+    <!-- Main content of the page -->
     <h1>Chapter 1 - Quiz</h1>
 
     <nav>
@@ -18,5 +48,23 @@
     <div>
         <object data="qcm-1-fr.swf" width="800" height="600"></object>
     </div>
+	 <!-- JavaScript to detect orientation and show/hide the rotate message -->
+    <script>
+        function checkOrientation() {
+            if (window.innerHeight > window.innerWidth) {
+                // Show rotate message if in portrait mode
+                document.querySelector('.rotate-message').style.display = 'flex';
+                document.querySelector('.content').style.display = 'none';
+            } else {
+                // Hide rotate message if in landscape mode
+                document.querySelector('.rotate-message').style.display = 'none';
+                document.querySelector('.content').style.display = 'block';
+            }
+        }
+
+        // Run checkOrientation on load and resize
+        window.addEventListener('load', checkOrientation);
+        window.addEventListener('resize', checkOrientation);
+    </script>
 </body>
 </html>
