@@ -1,22 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1 - Electrostatique</title>
-	<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <title>Full-Screen SWF with Ruffle</title>
+    <script src="ruffle.js"></script> <!-- Ensure ruffle.js is loaded correctly -->
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        #swf-container {
+            width: 100%;
+            height: 100%;
+            position: relative; /* Allows for absolute positioning */
+        }
+
+        /* Style for buttons container */
+        #button-container {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between; /* Align buttons to left and right */
+            padding: 0 10px;
+            z-index: 1000;
+        }
+
+        /* Style for left-aligned buttons */
+        .left-buttons {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+
+        /* Style for individual buttons */
+        .button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Chapter 1 - Electrostatique</h1>
-
-    <nav>
-        <button onclick="location.href='../index.html'">Home</button>
-        <button onclick="location.href='P10-Ch1-quiz-fr.html'">Quiz</button>
-	    <button onclick="location.href='P10-Ch1-Lab-fr.html'">Lab</button>>
-    </nav>
-
-    <div>
-        <object data="chapter-1.swf" width="800" height="600"></object>
+    <!-- Container for the buttons -->
+    <div id="button-container">
+        <!-- Left-aligned buttons -->
+        <div class="left-buttons">
+            <button class="button" id="home-button">Home</button>
+            <button class="button" id="lab-button">Lab</button>
+            <button class="button" id="quiz-button">QUIZ</button>
+        </div>
+        <!-- Right-aligned fullscreen button -->
+        <button class="button" id="fullscreen-button">Enter Full Screen</button>
     </div>
+
+    <div id="swf-container"></div>
+
+    <script>
+        const ruffle = window.RufflePlayer.newest();
+        const container = document.getElementById("swf-container");
+        const player = ruffle.createPlayer();
+        
+        // Load your SWF file
+        container.appendChild(player);
+        player.load("chapter-1.swf").then(() => {
+            console.log("SWF loaded successfully.");
+        }).catch(err => {
+            console.error("Error loading SWF:", err);
+        });
+
+
+        // Function to request full screen
+        function enterFullScreen() {
+            if (player.requestFullscreen) {
+                player.requestFullscreen();
+            } else if (player.webkitRequestFullscreen) { // For Safari
+                player.webkitRequestFullscreen();
+            } else if (player.msRequestFullscreen) { // For IE/Edge
+                player.msRequestFullscreen();
+            } else {
+                console.error("Full screen is not supported in this browser.");
+            }
+        }
+
+        // Attach the click event to the fullscreen button
+        document.getElementById('fullscreen-button').addEventListener('click', enterFullScreen);
+
+        // Event listeners for the other buttons
+        document.getElementById('home-button').addEventListener('click', () => {
+            alert("Home button clicked!");
+            // Add navigation logic here
+        });
+        
+        document.getElementById('lab-button').addEventListener('click', () => {
+            alert("Lab button clicked!");
+            // Add navigation logic here
+        });
+        
+        document.getElementById('quiz-button').addEventListener('click', () => {
+            alert("QUIZ button clicked!");
+            // Add navigation logic here
+        });
+    </script>
+
 </body>
 </html>
