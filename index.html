@@ -1,105 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modules Layout</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background-image: url('your-background-image.jpg');
-            background-size: cover;
-            background-position: center;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cours de Physique</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    body {
+        margin: 0;
+        padding: 20px;
+        background-image: url('your-background-image.jpg');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        .module {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    .module {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .module h2 {
-            margin-top: 0;
-            color: #333;
-        }
+    .module h2 {
+        margin-top: 0;
+        color: #333;
+        font-weight: bold;
+    }
 
-        .chapters {
-            list-style-type: none;
-            padding: 0;
-        }
+    .chapters {
+        list-style-type: none;
+        padding: 0;
+    }
 
-        .chapters li {
-            margin: 10px 0;
-            padding: 8px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
-        }
+    .chapters li {
+        margin: 10px 0;
+        padding: 8px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+    }
 
-        /* New styles for links and hover effects */
-        .chapters li a {
-            text-decoration: none;
-            color: inherit;
-            display: block; /* Makes the entire li clickable */
-        }
+    .chapters li a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
 
-        .chapters li:hover {
-            color: red;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-    </style>
+    .chapters li:hover {
+        color: red;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+</style>
 </head>
 <body>
     <div class="container">
         <div class="module">
-            <h2>Module 1</h2>
+            <h2>Module 1 - Electricité</h2>
             <ul class="chapters">
-                <li><a href="https://www.wikipedia.com" target="_blank">Chapter 1</a></li>
-                <li>Chapter 2</li>
-                <li>Chapter 3</li>
-                <li>Chapter 4</li>
+                <li><a href="Chapters/P10-Chapter-1-fr.html" target="_self" class="link1">1- Electrostatique</a></li>
+                <li>2- Différence de potentiel et courant électrique</li>
+                <li>3- Conducteurs ohmiques</li>
+                <li>4- Générateurs, récepteurs et circuits électriques</li>
             </ul>
         </div>
         
         <div class="module">
-            <h2>Module 3</h2>
+            <h2>Module 3 - Optique</h2>
             <ul class="chapters">
-                <li><a href="https://www.wikipedia.com" target="_blank">Chapter 1</a></li>
-                <li>Chapter 2</li>
-                <li>Chapter 3</li>
-                <li>Chapter 4</li>
+                <li><a href="https://www.wikipedia.com" target="_blank">6- Lumière</a></li>
+                <li>7- Réflexion de la lumière</li>
+                <li>8- Réfraction de la lumière</li>
+                <li>9- Lentilles</li>
+                <li>10- L'œil humain</li>
             </ul>
         </div>
 
         <div class="module">
-            <h2>Module 2</h2>
+            <h2>Module 2 - Ondes</h2>
             <ul class="chapters">
-                <li><a href="Chapters/P10-Chapter-1-fr.html" target="_self" class="link1">Chapter 1</a></li>
-                <li>Chapter 2</li>
-                <li>Chapter 3</li>
-                <li>Chapter 4</li>
+                <li><a href="https://www.wikipedia.com" target="_blank">5- Ondes lumineuses et mécaniques</a></li>
             </ul>
         </div>
 
         <div class="module">
-            <h2>Module 4</h2>
+            <h2>Module 4 - Mécanique</h2>
             <ul class="chapters">
-                <li><a href="https://www.wikipedia.com" target="_blank">Chapter 1</a></li>
-                <li>Chapter 2</li>
-                <li>Chapter 3</li>
-                <li>Chapter 4</li>
+                <li><a href="https://www.wikipedia.com" target="_blank">11- Cinématique</a></li>
+                <li>12- Mouvement rectiligne</li>
+                <li>13- Mouvement rectiligne</li>
             </ul>
         </div>
     </div>
