@@ -3,26 +3,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>1- Electrostatique - Cours</title>
+    <title>Physics Course</title>
     <!-- Ruffle SWF Player -->
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script src="Scripts/ruffle.js"></script>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            box-sizing: border-box;
         }
 
-        .nav-container {
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* First row - Navigation */
+        .nav-row {
+            height: 60px; /* Fixed height for navigation */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            z-index: 1000;
+            align-items: center;
         }
 
         .nav-buttons {
@@ -53,53 +63,67 @@
             background-color: #0b7dda;
         }
 
-        .swf-container {
-            flex: 1;
+        /* Second row - SWF Content */
+        .swf-row {
+            flex: 1; /* Takes remaining height */
             width: 100%;
             position: relative;
+            background-color: #000; /* Background color for SWF container */
         }
 
-        #swf-content {
+        #swf-container {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            position: absolute;
         }
     </style>
 </head>
 <body>
-    <div class="nav-container">
-        <div class="nav-buttons">
-            <button class="button" onclick="window.location.href='home.html'">Home</button>
-            <button class="button" onclick="window.location.href='lab.html'">Lab</button>
-            <button class="button" onclick="window.location.href='quiz.html'">Quiz</button>
+    <div class="page-container">
+        <!-- Navigation Row -->
+        <div class="nav-row">
+            <div class="nav-buttons">
+                <button class="button" onclick="window.location.href='home.html'">Home</button>
+                <button class="button" onclick="window.location.href='lab.html'">Lab</button>
+                <button class="button" onclick="window.location.href='quiz.html'">Quiz</button>
+            </div>
+            <button id="fullscreen-btn" class="button" onclick="toggleFullScreen()">Full Screen</button>
         </div>
-        <button id="fullscreen-btn" class="button" onclick="toggleFullScreen()">Full Screen</button>
-    </div>
 
-    <div class="swf-container">
-        <embed 
-            id="swf-content"
-            src="chapter-1.swf"
-            type="application/x-shockwave-flash"
-            quality="high"
-            allowscriptaccess="always"
-        >
+        <!-- SWF Content Row -->
+        <div class="swf-row">
+            <div id="swf-container"></div>
+        </div>
     </div>
 
     <script>
+        // Initialize Ruffle
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("swf-container");
+            container.appendChild(player);
+            player.style.width = '100%';
+            player.style.height = '100%';
+            player.load("chapter-1.swf");
+        });
+
         // Fullscreen functionality
         function toggleFullScreen() {
-            const swfContainer = document.querySelector('.swf-container');
+            const swfRow = document.querySelector('.swf-row');
             
             if (!document.fullscreenElement) {
-                if (swfContainer.requestFullscreen) {
-                    swfContainer.requestFullscreen();
-                } else if (swfContainer.mozRequestFullScreen) { // Firefox
-                    swfContainer.mozRequestFullScreen();
-                } else if (swfContainer.webkitRequestFullscreen) { // Chrome, Safari & Opera
-                    swfContainer.webkitRequestFullscreen();
-                } else if (swfContainer.msRequestFullscreen) { // IE/Edge
-                    swfContainer.msRequestFullscreen();
+                if (swfRow.requestFullscreen) {
+                    swfRow.requestFullscreen();
+                } else if (swfRow.mozRequestFullScreen) {
+                    swfRow.mozRequestFullScreen();
+                } else if (swfRow.webkitRequestFullscreen) {
+                    swfRow.webkitRequestFullscreen();
+                } else if (swfRow.msRequestFullscreen) {
+                    swfRow.msRequestFullscreen();
                 }
             } else {
                 if (document.exitFullscreen) {
@@ -113,16 +137,6 @@
                 }
             }
         }
-
-        // Initialize Ruffle
-        window.RufflePlayer = window.RufflePlayer || {};
-        window.addEventListener("load", (event) => {
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            const container = document.getElementById("swf-content");
-            container.parentNode.replaceChild(player, container);
-            player.load("your-swf-file.swf");
-        });
 
         // Handle fullscreen changes
         document.addEventListener('fullscreenchange', updateFullscreenButton);
