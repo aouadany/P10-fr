@@ -1,22 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1 - Lab</title>
-	<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics Course</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .nav-row {
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        #fullscreen-btn {
+            background-color: #2196F3;
+        }
+
+        #fullscreen-btn:hover {
+            background-color: #0b7dda;
+        }
+
+        .swf-row {
+            flex: 1;
+            width: 100%;
+            position: relative;
+            background-color: #000;
+        }
+
+        /* Style for the embed/object element */
+        #swf-content {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
-    <h1>Chapter 1 - Lab</h1>
+    <div class="page-container">
+        <div class="nav-row">
+            <div class="nav-buttons">
+                <button class="button" onclick="window.location.href='../index.html'">Home</button>
+                <button class="button" onclick="window.location.href='P10-Chapter-1-fr.html'">Cours</button>
+                <button class="button" onclick="window.location.href='P10-Ch1-quiz-fr.html'">Quiz</button>
+            </div>
+            <button id="fullscreen-btn" class="button" onclick="toggleFullScreen()">Full Screen</button>
+        </div>
 
-    <nav>
-        <button onclick="location.href='../index.html'">Home</button>
-        <button onclick="location.href='P10-Chapter-1-fr.html'">Course</button>
-        <button onclick="location.href='P10-Ch1-quiz-fr.html'">Quiz</button>
-           </nav>
-
-    <div>
-        <object data="electroscope_fr.swf" width="800" height="600"></object>
+        <div class="swf-row">
+            <!-- Direct embedding of SWF -->
+            <embed 
+                id="swf-content"
+                src="qcm-1-fr.swf"
+                type="application/x-shockwave-flash"
+                width="100%"
+                height="100%"
+                quality="high"
+                scale="exactfit"
+            >
+        </div>
     </div>
+
+    <script>
+        function toggleFullScreen() {
+            const swfRow = document.querySelector('.swf-row');
+            
+            if (!document.fullscreenElement) {
+                if (swfRow.requestFullscreen) {
+                    swfRow.requestFullscreen();
+                } else if (swfRow.mozRequestFullScreen) {
+                    swfRow.mozRequestFullScreen();
+                } else if (swfRow.webkitRequestFullscreen) {
+                    swfRow.webkitRequestFullscreen();
+                } else if (swfRow.msRequestFullscreen) {
+                    swfRow.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+        function updateFullscreenButton() {
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            if (document.fullscreenElement) {
+                fullscreenBtn.textContent = 'Exit Full Screen';
+            } else {
+                fullscreenBtn.textContent = 'Full Screen';
+            }
+        }
+    </script>
 </body>
 </html>
