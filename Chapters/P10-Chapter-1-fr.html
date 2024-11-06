@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Physics Course</title>
-    <!-- Ruffle SWF Player -->
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <!-- Ruffle SWF Player from CDN -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <style>
         * {
             margin: 0;
@@ -25,14 +25,14 @@
             height: 100vh;
         }
 
-        /* First row - Navigation */
         .nav-row {
-            height: 60px; /* Fixed height for navigation */
+            height: 60px;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Added shadow for better separation */
         }
 
         .nav-buttons {
@@ -63,12 +63,11 @@
             background-color: #0b7dda;
         }
 
-        /* Second row - SWF Content */
         .swf-row {
-            flex: 1; /* Takes remaining height */
+            flex: 1;
             width: 100%;
             position: relative;
-            background-color: #000; /* Background color for SWF container */
+            background-color: #000;
         }
 
         #swf-container {
@@ -77,12 +76,19 @@
             left: 0;
             width: 100%;
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ruffle-player {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
     <div class="page-container">
-        <!-- Navigation Row -->
         <div class="nav-row">
             <div class="nav-buttons">
                 <button class="button" onclick="window.location.href='home.html'">Home</button>
@@ -92,26 +98,39 @@
             <button id="fullscreen-btn" class="button" onclick="toggleFullScreen()">Full Screen</button>
         </div>
 
-        <!-- SWF Content Row -->
         <div class="swf-row">
             <div id="swf-container"></div>
         </div>
     </div>
 
     <script>
-        // Initialize Ruffle
-        window.RufflePlayer = window.RufflePlayer || {};
-        window.addEventListener("load", (event) => {
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            const container = document.getElementById("swf-container");
-            container.appendChild(player);
+        // Wait for Ruffle to be ready
+        window.addEventListener('load', () => {
+            // Create Ruffle player
+            const rufflePlayer = window.RufflePlayer.newest();
+            const player = rufflePlayer.createPlayer();
+            const container = document.getElementById('swf-container');
+            
+            // Set player attributes
             player.style.width = '100%';
             player.style.height = '100%';
-            player.load("chapter-1.swf");
+            
+            // Add player to container
+            container.appendChild(player);
+            
+            // Load the SWF file
+            player.load('chapter-1.swf');
+
+            // Optional: Configure player settings
+            player.config = {
+                autoplay: 'on',
+                unmuteOverlay: 'hidden',
+                letterbox: 'on',
+                quality: 'high',
+                scale: 'showAll'
+            };
         });
 
-        // Fullscreen functionality
         function toggleFullScreen() {
             const swfRow = document.querySelector('.swf-row');
             
@@ -120,38 +139,4 @@
                     swfRow.requestFullscreen();
                 } else if (swfRow.mozRequestFullScreen) {
                     swfRow.mozRequestFullScreen();
-                } else if (swfRow.webkitRequestFullscreen) {
-                    swfRow.webkitRequestFullscreen();
-                } else if (swfRow.msRequestFullscreen) {
-                    swfRow.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        }
-
-        // Handle fullscreen changes
-        document.addEventListener('fullscreenchange', updateFullscreenButton);
-        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
-        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
-        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
-
-        function updateFullscreenButton() {
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            if (document.fullscreenElement) {
-                fullscreenBtn.textContent = 'Exit Full Screen';
-            } else {
-                fullscreenBtn.textContent = 'Full Screen';
-            }
-        }
-    </script>
-</body>
-</html>
+                } else if (swf
