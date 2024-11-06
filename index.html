@@ -41,11 +41,38 @@
     .module-4 {
         background-color: rgba(181, 156, 204, 0.5);  /* Lavender */
     }
+
+    /* Link styling */
+    .chapters a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .chapters a:hover {
+        color: #2980b9;  /* Blue color on hover */
+        text-decoration: none;
+    }
+
+    /* Adding hover effect only for list items with links */
+    .chapters li:has(a) {
+        transition: color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .chapters li:has(a):hover {
+        color: #2980b9;  /* Blue color on hover */
+    }
+
+    /* Remove pointer cursor from items without links */
+    .chapters li:not(:has(a)) {
+        cursor: default;
+    }
 </style>
 </head>
 <body>
     <div class="container">
-        <div class="module">
+        <div class="module module-1">
             <h2>Module 1 - Electricité</h2>
             <ul class="chapters">
                 <li><a href="Chapters/P10-Chapter-1-fr.html" target="_self" class="link1">1- Electrostatique</a></li>
@@ -55,10 +82,10 @@
             </ul>
         </div>
         
-        <div class="module">
+        <div class="module module-3">
             <h2>Module 3 - Optique</h2>
             <ul class="chapters">
-                <li><a href="https://www.wikipedia.com" target="_blank">6- Lumière</a></li>
+                <li>6- Lumière</a></li>
                 <li>7- Réflexion de la lumière</li>
                 <li>8- Réfraction de la lumière</li>
                 <li>9- Lentilles</li>
@@ -66,17 +93,17 @@
             </ul>
         </div>
 
-        <div class="module">
+        <div class="module module-2">
             <h2>Module 2 - Ondes</h2>
             <ul class="chapters">
-                <li><a href="https://www.wikipedia.com" target="_blank">5- Ondes lumineuses et mécaniques</a></li>
+                <li>5- Ondes lumineuses et mécaniques</a></li>
             </ul>
         </div>
 
-        <div class="module">
+        <div class="module module-4">
             <h2>Module 4 - Mécanique</h2>
             <ul class="chapters">
-                <li><a href="https://www.wikipedia.com" target="_blank">11- Cinématique</a></li>
+                <li>11- Cinématique</a></li>
                 <li>12- Mouvement rectiligne</li>
                 <li>13- Mouvement rectiligne</li>
             </ul>
