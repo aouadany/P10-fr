@@ -1,117 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chap1</title>
-    <script src="ruffle.js"></script> <!-- Ensure ruffle.js is loaded correctly -->
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>1- Electrostatique - Cours</title>
+    <!-- Ruffle SWF Player -->
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <style>
-        html, body {
-            width: 100%;
-            height: 100%;
+        body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrollbars */
-        }
-
-        #swf-container {
-            width: 100%;
-            height: 100%;
-            position: relative; /* Allows for absolute positioning */
-        }
-
-        /* Style for buttons container */
-        #button-container {
-            position: absolute;
-            top: 10px;
-            width: 100%;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
-            justify-content: space-between; /* Align buttons to left and right */
-            padding: 0 10px;
+            flex-direction: column;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
             z-index: 1000;
         }
 
-        /* Style for left-aligned buttons */
-        .left-buttons {
+        .nav-buttons {
             display: flex;
-            gap: 10px; /* Space between buttons */
+            gap: 10px;
         }
 
-        /* Style for individual buttons */
         .button {
-            padding: 10px 15px;
-            background-color: #007BFF;
+            padding: 8px 16px;
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        #fullscreen-btn {
+            background-color: #2196F3;
+        }
+
+        #fullscreen-btn:hover {
+            background-color: #0b7dda;
+        }
+
+        .swf-container {
+            flex: 1;
+            width: 100%;
+            position: relative;
+        }
+
+        #swf-content {
+            width: 100%;
+            height: 100%;
+            position: absolute;
         }
     </style>
 </head>
 <body>
-    <!-- Container for the buttons -->
-    <div id="button-container">
-        <!-- Left-aligned buttons -->
-        <div class="left-buttons">
-            <button class="button" id="home-button">Home</button>
-            <button class="button" id="lab-button">Lab</button>
-            <button class="button" id="quiz-button">QUIZ</button>
+    <div class="nav-container">
+        <div class="nav-buttons">
+            <button class="button" onclick="window.location.href='home.html'">Home</button>
+            <button class="button" onclick="window.location.href='lab.html'">Lab</button>
+            <button class="button" onclick="window.location.href='quiz.html'">Quiz</button>
         </div>
-        <!-- Right-aligned fullscreen button -->
-        <button class="button" id="fullscreen-button">Enter Full Screen</button>
+        <button id="fullscreen-btn" class="button" onclick="toggleFullScreen()">Full Screen</button>
     </div>
 
-    <div id="swf-container"></div>
+    <div class="swf-container">
+        <embed 
+            id="swf-content"
+            src="chapter-1.swf"
+            type="application/x-shockwave-flash"
+            quality="high"
+            allowscriptaccess="always"
+        >
+    </div>
 
     <script>
-        const ruffle = window.RufflePlayer.newest();
-        const container = document.getElementById("swf-container");
-        const player = ruffle.createPlayer();
-        
-        // Load your SWF file
-        container.appendChild(player);
-        player.load("chapter-1.swf").then(() => {
-            console.log("SWF loaded successfully.");
-        }).catch(err => {
-            console.error("Error loading SWF:", err);
-        });
-
-
-        // Function to request full screen
-        function enterFullScreen() {
-            if (player.requestFullscreen) {
-                player.requestFullscreen();
-            } else if (player.webkitRequestFullscreen) { // For Safari
-                player.webkitRequestFullscreen();
-            } else if (player.msRequestFullscreen) { // For IE/Edge
-                player.msRequestFullscreen();
+        // Fullscreen functionality
+        function toggleFullScreen() {
+            const swfContainer = document.querySelector('.swf-container');
+            
+            if (!document.fullscreenElement) {
+                if (swfContainer.requestFullscreen) {
+                    swfContainer.requestFullscreen();
+                } else if (swfContainer.mozRequestFullScreen) { // Firefox
+                    swfContainer.mozRequestFullScreen();
+                } else if (swfContainer.webkitRequestFullscreen) { // Chrome, Safari & Opera
+                    swfContainer.webkitRequestFullscreen();
+                } else if (swfContainer.msRequestFullscreen) { // IE/Edge
+                    swfContainer.msRequestFullscreen();
+                }
             } else {
-                console.error("Full screen is not supported in this browser.");
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
             }
         }
 
-        // Attach the click event to the fullscreen button
-        document.getElementById('fullscreen-button').addEventListener('click', enterFullScreen);
+        // Initialize Ruffle
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("swf-content");
+            container.parentNode.replaceChild(player, container);
+            player.load("your-swf-file.swf");
+        });
 
-        // Event listeners for the other buttons
-        document.getElementById('home-button').addEventListener('click', () => {
-            alert("Home button clicked!");
-            // Add navigation logic here
-        });
-        
-        document.getElementById('lab-button').addEventListener('click', () => {
-            alert("Lab button clicked!");
-            // Add navigation logic here
-        });
-        
-        document.getElementById('quiz-button').addEventListener('click', () => {
-            alert("QUIZ button clicked!");
-            // Add navigation logic here
-        });
+        // Handle fullscreen changes
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+        function updateFullscreenButton() {
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            if (document.fullscreenElement) {
+                fullscreenBtn.textContent = 'Exit Full Screen';
+            } else {
+                fullscreenBtn.textContent = 'Full Screen';
+            }
+        }
     </script>
-
 </body>
 </html>
