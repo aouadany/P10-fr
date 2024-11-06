@@ -24,7 +24,7 @@
         }
 
         .module {
-            background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -46,45 +46,60 @@
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 5px;
         }
+
+        /* New styles for links and hover effects */
+        .chapters li a {
+            text-decoration: none;
+            color: inherit;
+            display: block; /* Makes the entire li clickable */
+        }
+
+        .chapters li:hover {
+            color: red;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="module">
-            <h2>Electricité</h2>
+            <h2>Module 1</h2>
             <ul class="chapters">
-                <li><a href="Chapters/P10-Chapter-1-fr.html" target="_self" class="link1">1- Electrostatique</a></li>
-                <li>2- Différence de potentiel et courant électrique</li>
-                <li>3- Conducteurs ohmiques</li>
-                <li>4- Générateurs, récepteurs et circuits électriques</li>
+                <li><a href="https://www.wikipedia.com" target="_blank">Chapter 1</a></li>
+                <li>Chapter 2</li>
+                <li>Chapter 3</li>
+                <li>Chapter 4</li>
             </ul>
         </div>
         
         <div class="module">
-            <h2>Optique</h2>
+            <h2>Module 3</h2>
             <ul class="chapters">
-                <li>6- Lumière</li>
-                <li>7- Réflexion de la lumière</li>
-                <li>8- Réfraction de la lumière</li>
-                <li>9-  Lentilles</li>
-		<li>910- L’œil humain</li>
+                <li><a href="https://www.wikipedia.com" target="_blank">Chapter 1</a></li>
+                <li>Chapter 2</li>
+                <li>Chapter 3</li>
+                <li>Chapter 4</li>
             </ul>
         </div>
 
         <div class="module">
-            <h2>Ondes</h2>
+            <h2>Module 2</h2>
             <ul class="chapters">
-                <li>5- Ondes lumineuses et mécaniques</li>
+                <li><a href="Chapters/P10-Chapter-1-fr.html" target="_self" class="link1">Chapter 1</a></li>
+                <li>Chapter 2</li>
+                <li>Chapter 3</li>
+                <li>Chapter 4</li>
             </ul>
         </div>
 
         <div class="module">
-            <h2>Mécanique</h2>
+            <h2>Module 4</h2>
             <ul class="chapters">
-                <li>11- Cinématique</li>
-                <li>12- Mouvement rectiligne</li>
-                <li>13- Mouvement rectiligne</li>
-
+                <li><a href="https://www.wikipedia.com" target="_blank">Chapter 1</a></li>
+                <li>Chapter 2</li>
+                <li>Chapter 3</li>
+                <li>Chapter 4</li>
             </ul>
         </div>
     </div>
