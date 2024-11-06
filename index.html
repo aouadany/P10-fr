@@ -1,293 +1,92 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script type="text/JavaScript">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modules Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-image: url('your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
 
-function disableselect(e) {
-  return false
-}
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-function reEnable() {
-  return true
-}
+        .module {
+            background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-document.onselectstart = new Function ("return false")
+        .module h2 {
+            margin-top: 0;
+            color: #333;
+        }
 
-if (window.sidebar) {
-  document.onmousedown = disableselect
-  document.onclick = reEnable
-}
+        .chapters {
+            list-style-type: none;
+            padding: 0;
+        }
 
-</script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>sommaire</title>
-
-<style type="text/css">
-body {
-	background-color: #66CCCC;
-	border: 0px solid black;
-	padding: 25px;
-	background-repeat: no-repeat;
-	background-size: auto;
-	font-family: Verdana, Geneva, sans-serif;
-
-}
-
-
-
-
-Title {
-	font-size: 18px;
-}
-.green {
-	color: green;
-	font-size: 35px;
-}
-.white {
-	color: #FFF;
-	font-size: 18px;
-}
-.orange {
-	color: #d5ca1d;
-	font-size: 35px;
-}
-
-.blue {
-	color: blue;
-	font-size: 35px;
-}
-
-
-
-.violet {
-	color:  #8d0ca8;
-	font-size: 35px;
-}
-
-.orange {
-	color:  orange;
-	font-size: 35px;
-}
-
-.red {
-	color: red;
-	font-size: 35px;
-}
-
-.black {
-	color: black;
-	font-size: 35px;
-}
-
-p:hover, h1:hover, a:hover {
-
-}
-a:link {
-  color: white;
-}
-
-/* visited link */
-a:visited {
-  color: white;
-}
-
-/* mouse over link */
-a:hover {
-  color: blue;
-}
-
-/* selected link */
-a:active {
-	color: white;
-	font-family: Verdana, Geneva, sans-serif;
-	text-align: left;
-}
-
-.gridContainer.clearfix #LayoutDiv1 table {
-	text-align: left;
-	font-family: Verdana, Geneva, sans-serif;
-}
-
-
-
-a.link1:link, a:visited {
- 
-  color: white;
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a.link1:hover, a:active {
-  color: green;
-}
-
-a.link2:link, a:visited {
- 
-  color: white;
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a.link2:hover, a:active {
-  color: blue;
-}
-
-a.link3:link, a:visited {
- 
-  color: white;
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a.link3:hover, a:active {
-  color: black;
-}
-
-a.link4:link, a:visited {
- 
-  color: white;
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a.link4:hover, a:active {
-  color: #8d0ca8;
-}
-
-
-a.link5:link, a:visited {
- 
-  color: white;
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a.link5:hover, a:active {
-  color: orange;
-}
-
-</style>
+        .chapters li {
+            margin: 10px 0;
+            padding: 8px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+        }
+    </style>
 </head>
-<BODY oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-<div class="gridContainer clearfix">
-  <div id="LayoutDiv1">
-    <table width="100%" border="0" cellpadding="3" cellspacing="3" >
-      <tr>
-        <th width="4%" scope="col">&nbsp;</th>
-        <th width="4%" scope="col">&nbsp;</th>
-        <th width="51%" class="green" scope="col">Electricité</th>
-        <th width="1%" scope="col">&nbsp;</th>
-        <th width="34%" class="orange" scope="col"><span class="blue">Ondes</span></th>
-        <th width="6%" scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">1-<a href="Chapters/P10-Chapter-1-fr.html" target="_self" class="link1">Electrostatique</a></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">5- <a href=" %245%24lesson" target="_self" class="link2">Ondes lumineuses et  mécaniques</a></th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">2-<a href="%242%24lesson" target="_self" class="link1">Différence de potentiel et courant électrique</a></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col"><span class="white">3-<a href="%243%24lesson" target="_self" class="link1">Conducteurs ohmiques</a></span></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col"><span class="white">4-<a href="%244%24lesson" target="_self" class="link1">Générateurs, récepteurs et circuits électriques </a></span></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col"></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="green"><span class="black">Optique</span></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="green"><span class="violet">Mécanique</span></th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">6-&nbsp; <a href="%246%24lesson" class="link3" target="_self">Lumière</a></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">11- <a href="%2411%24lesson" class="link4" target="_self">Cinématique</a></th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">7-&nbsp; <a href="%247%24lesson" target="_self" class="link3">Réflexion de la  lumière</a></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">12- <a href="%2412%24lesson" class="link4"  target="_self">Mouvement rectiligne</a></th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">8-&nbsp; <a href="%248%24lesson" target="_self" class="link3">Réfraction de la  lumière</a></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">13- <a href="%2413%24lesson" class="link4"  target="_self">Mouvement rectiligne</a></th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">9-&nbsp; <a href="%249%24lesson" target="_self" class="link3">Lentilles</a></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">10- <a href="%2410%24lesson" target="_self" class="link3">L&rsquo;œil humain</a></th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col" class="white">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-    </table>
-  </div>
-</div>
+<body>
+    <div class="container">
+        <div class="module">
+            <h2>Electricité</h2>
+            <ul class="chapters">
+                <li>1- Electrostatique</li>
+                <li>2- Différence de potentiel et courant électrique</li>
+                <li>3- Conducteurs ohmiques</li>
+                <li>4- Générateurs, récepteurs et circuits électriques</li>
+            </ul>
+        </div>
+        
+        <div class="module">
+            <h2>Optique</h2>
+            <ul class="chapters">
+                <li>6- Lumière</li>
+                <li>7- Réflexion de la lumière</li>
+                <li>8- Réfraction de la lumière</li>
+                <li>9-  Lentilles</li>
+		<li>910- L’œil humain</li>
+            </ul>
+        </div>
+
+        <div class="module">
+            <h2>Ondes</h2>
+            <ul class="chapters">
+                <li>5- Ondes lumineuses et mécaniques</li>
+            </ul>
+        </div>
+
+        <div class="module">
+            <h2>Mécanique</h2>
+            <ul class="chapters">
+                <li>11- Cinématique</li>
+                <li>12- Mouvement rectiligne</li>
+                <li>13- Mouvement rectiligne</li>
+
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
