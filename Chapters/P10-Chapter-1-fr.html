@@ -6,6 +6,44 @@
     <title>Physics Course</title>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <style>
+
+        <style>
+@font-face {
+    font-family: 'Verdana-Custom';
+    src: url('https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/verdana.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EduGrade';
+    src: url('https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/EDUGR10.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EduLab';
+    src: url('https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/EduLab.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GGSubscript';
+    src: url('https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/GGSUBSCR.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GGSuperscript';
+    src: url('https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/GGSUPERS.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
         * {
             margin: 0;
             padding: 0;
@@ -75,7 +113,15 @@
             height: 100%;
             position: absolute;
         }
-    </style>
+  /* Optional: Preload fonts for better performance */
+</style>
+
+<!-- Add preload links in the head section -->
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/verdana.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/EDUGR10.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/EduLab.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/GGSUBSCR.TTF" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/aouadany/EduLab/Fonts/GGSUPERS.TTF" as="font" type="font/ttf" crossorigin>
 </head>
 <body>
     <div class="page-container">
